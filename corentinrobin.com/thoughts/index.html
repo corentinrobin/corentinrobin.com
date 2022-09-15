@@ -1,0 +1,227 @@
+<!-- Author: Corentin ROBIN-->
+
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta content="text/html" charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="styles/index.css">
+        <title>THOUGHTS ABOUT WEB DEVELOPMENT IN 2020</title>
+    </head>
+
+    <body>
+        <h1>THOUGHTS ABOUT WEB DEVELOPMENT IN 2020</h1>
+        <p><i>by Corentin ROBIN</i></p>
+        <p><i>version 27/11/2020</i></p>
+
+        <h2>Definitions</h2>
+
+        <p>We work <i>inside</i> a framework, and <i>aside</i> of a library.</p>
+
+        <p>Here we will use <i>framework</i> for both, to simplify.</p>
+        
+
+        <h2>Context</h2>
+        
+        <p>I’ve been working as a web developer since October 2016, and I’ve gathered some thoughts and some experiences during those years.</p>
+        
+        <p>I worked as a full-stack developer during 2 and a half years, and then as a JavaScript developer, specialised in 2D graphics rendering (canvas).</p>
+        
+        <p>I’ve been lucky enough to work for bosses that let me <i>carte blanche</i>.</p>
+        
+        <p>But then I moved to Barcelona to start a new life, and things got a bit more complicated.</p>
+        
+        <p>After around 10 interviews and about 4 technical tests, I understood something quite straight forward : front-end development in 2020 is focused on the method instead of the result.</p>
+        
+        <p>Once I had a technical test asking me for a specific result, with specific frameworks.</p>
+        
+        <p>I went straight vanilla as I was not an expert in those frameworks, I sent my solution.</p>
+        
+        <p>I received the following answers : <i>your solution works as it should, it’s good</i>… but can you do the same with NewFancyFramework.js ?</p>
+
+        <h2>Observations</h2>
+
+        <p>Following this, few remarks :</p>
+
+        <ul>
+            <li>if my solution is good, why should I redo it with NewFancyFramework.js ?</li>
+            <li>asking me to redo it with NewFancyFramework.js is for technical reasons or just for the sake of using NewFancyFramework.js ?</li>
+            <li>I have a technical background and I can read, don’t we think I’m able to adapt to a new method / tool ?</li>
+        </ul>
+        
+        <p>I found those following facts :</p>
+
+        <ul>
+            <li>frameworks seem to be more a religion than an argumented technical need</li>
+            <li>a lot of companies choose the technologies even before starting to spec the actual project (a worker will choose his tools after knowing what he is suppose to build, not before)</li>
+            <li>we don’t hire <i>developers</i>, we hire <i>NewFancyFramework.js developers</i> (in 1953 Maserati hired Fangio as a <i>driver</i>, not as a <i>Maserati driver</i> ; Niel Armstrong was hired as a <i>pilot</i>, not as a <i>spaceship pilot</i>)</li>
+        </ul>
+        
+        <p class="note">this framework religion is way less overwhelming back-end side : apart from Laravel or Symphony, no real <i>mille-feuille</i> of tools and libraries.</p>
+        
+        <p>Asking if NewFancyFramework.js is really needed for a specific project will create a Holy War, where people will think that you are an old fashion guy, or a guy thinking different just for the sake of being a rebel, but they will never think that you are actually concerned by the value of using NewFancyFramework.js.</p>
+
+        <h2>Current state of frameworks</h2>
+
+        <p>In 2020, you have to choose in this list for JS :
+            <ul>
+                <li>Angular</li>
+                <li>React</li>
+                <li>Vue</li>
+                <li>Ember</li>
+                <li>Backbone</li>
+                <li>Meteor</li>
+                <li>Svelte</li>
+                <li>Flutter</li>
+                <li>Mithril</li>
+                <li>Aurelia</li>
+                <li>Polymer</li>
+            </ul>
+        </p>
+
+        <p>and in this list for CSS :
+            <ul>
+                <li>Bootstrap</li>
+                <li>Tailwind</li>
+                <li>Foundation</li>
+                <li>Bulma</li>
+                <li>Miligram</li>
+                <li>LESS</li>
+                <li>SASS</li>
+            </ul>
+        </p>
+
+        <p>Wanting to use vanilla JS and CSS became wizardry in 2020.</p>
+        
+        <h2>Examples of questionable frameworks</h2>
+        
+        <h3>Webpack</h3>
+        
+        <p>I sent once my solution of a test (which was confirmed by the company itself as good), and I got the following size for the entire folder : <i>12.193 bytes for 10 ítems</i>.</p>
+        <p>I was asked to use webpack and an ES2016 module way of doing, and for the exact same visual and functional result, I got the following size : <i>20.247.268 bytes for  6.531 ítems</i>.</p>
+        
+        <p>6500+ files ? Well, I can still use <a href="https://docs.npmjs.com/cli/v6/commands/npm-prune" target="_blank">Prune</a>.</p>
+
+        <p>But in order to use <i>webpack</i>, we need to install <i>npm</i>, and then use <i>Prune</i> to clean the <i>node_modules</i> folder, for an identical visual and functional result.</p>
+        
+        <h3>Tailwind CSS</h3>
+
+        <p>In this example, we take Tailwind and analyse it, it order to determine how it will help us styling a page, compared to CSS.</p>
+
+        <p class="note">if used 100%, Tailwind is both a library <i>and</i> a framework.</p>
+
+        <div>
+
+        <table>
+            <tr><td>Concept</td><td>Tailwind</td><td>CSS</td><td>End results</td></tr>
+            <tr><td>utility first</td><td>class="bg-blue-600 text-white"</td><td>style="background-color: var(--blue-600); color: white"</td><td>pre-build classes, put inline in a class attribute : basically inline styles with different semantics</td></tr>
+            <tr><td>@apply directive</td><td>.button
+{
+     @apply bg-blue-600 text-white;
+}</td><td>.button
+{
+    background-color: var(--blue-600); color: white;
+}</td><td>block containing pre-build Tailwind classes : basically CSS classes with different semantics</td></tr>
+            <tr><td>@tailwind directive</td><td>@tailwind base;</td><td>@import “base.css”;</td><td>basically importing styles with different semantics</td></tr>
+            <tr><td>tailwind.config.js</td><td>module.exports =
+{
+    [...]
+    fontSize:
+    {
+        xs: '12px',
+        sm: '14px'
+    }
+    [...]
+};</td><td>:root
+{
+    --font-size-xs: 12px;
+    --font-size-sm: 14px;
+}</td><td>configuration file to custom Tailwind pre-build classes : basically CSS variables with different semantics</td></tr>
+        </table>
+
+        </div>
+
+        <p>The table above demonstrates that when used, Tailwind does the same than CSS, it's just that the spoken language is different.</p>
+
+        <p class="important">inline styles is a list of CSS rules in an attribute <i>style</i>, Tailwind is a list of classes containing only one CSS rule each, in a <i>class</i> attribute.</p>
+
+        <p>If I say <i>"Je mange une pomme."</i>, <i>"Yo como una manzana."</i>, or <i>"I eat an apple."</i>, the language is different, but the idea expressed behind is exactly the same.</p>
+
+        <p>Both <code>class="bg-blue-600 text-white"</code> and <code>style="background-color: var(--blue-600); color: white"</code> mean the same thing: <i>my element background is blue and its text color is white</i>.</p>
+
+        <p>But you missed the fact that classes are already done for you, you will tell me. Well, I will finish this example with this open question : is it <b>that</b> long to build our own CSS set of classes ?</p>
+
+        <h2>Examples of interesting frameworks</h2>
+        
+        <h3>BabylonJS or any 3D library</h3>
+        
+        <p>The native WebGL being really hard to use, BabylonJS is really useful to build a 3D application quickly.</p>
+        <p>Doing it in native JavaScript would be a nightmare.</p>
+
+        <h2>The framework business</h2>
+
+        <p>At the beginning, the most used libraries where jQuery and Bootstrap, which never made any money with it, at a time where web development ecosystem was not as active as today on social networks.</p>
+
+        <p>Today, frameworks like Tailwind or Vue have <a href="https://twitter.com/tailwindcss" target="_blank">52k followers</a> and <a href="https://twitter.com/vuejs" target="_blank">191k followers</a> !</p>
+
+        <p>And they make business :    
+            <ul>
+                <li><a href="https://tailwindui.com/pricing" target="_blank">Tailwind UI</a></li>
+                <li><a href="https://tailwind.build/#purchase" target="_blank">Tailwind Builder</a></li>
+                <li><a href="https://vueschool.io/plans" target="_blank">Vue School</a></li>
+                <li><a href="https://www.vuemastery.com/pricing" target="_blank">Vue Mastery</a></li>
+            </ul>
+        </p>
+
+        <p>After knowing this, we can easily understand that the judgement can have a bias when choosing or not a framework.</p>
+        
+        <h2>Conclusion</h2>
+
+        <p>In a more and more binary world, you are either <i>anti</i> or <i>pro</i> something, people need to put you in a category.</p>
+        
+        <p class="important">I’m not anti or pro frameworks, I’m just for having the right tool for the right task, and not for implementing NewFancyFramework.js because it's hype and has 87k followers on Twitter.</p>
+
+        <p>I think the following questions should appear more often in the numerous startup meetings:</p>
+
+        <ul>
+            <li>about reusable components:
+                <ul>
+                    <li>why defining a generic model of a website header if this header is unique and will never have more than 1 instance ?</li>
+                    <li>how many pages we meet where we have several instances of the same UI model ?</li>
+                    <li>who will show 10 todo-lists / notepads / checklists / etc. in the same page ?</li>
+                </ul>
+            </li>
+            <li>example: products result page: all the UI components are passive, a simple PHP loop is sufficient to render the page. SPA you tell me ? Is it that UX-killer to do a quick page reload ?</li>
+            <li>other example: we know HTML, CSS, JS, PHP and MySQL. Is the framework selection + installation + learning + debug time will be below the standard languages development time ?</li>
+        </ul>
+
+        <p>Why do I propose you will say. It's simple :</p>
+
+        <ul>
+            <li>let's spec the project first, in the most exhaustive way as possible</li>
+            <li>let's check, for every part of the project, if we need tools, and if yes, what they will be</li>
+            <li>let's not be attracted by the hype of using X and Y framework</li>
+            <li>a bespoke framework can be built as well, in less time than you think (I worked for a company where I built the base code of a bespoke JS library for rendering 2D seating plans, with object zooming, panning etc. in 4 months, just with <i>&lt;canvas&gt;</i>)</li>
+        </ul>
+
+        <p>What I've been working on from my side:</p>
+
+        <ul>
+            <li>my main website, where I try to demonstrate how much things we can do with the basics : <a href="https://corentinrobin.com" target="_blank">corentinrobin.com</a></li>
+            <li>Selva, a small SPA library prototype, built in few days : <a href="https://selva.corentinrobin.com" target="_blank">selva.corentinrobin.com</a></li>
+            <li>an interactive map, for educative purpose : <a href="https://map.corentinrobin.com" target="_blank">map.corentinrobin.com</a></li>
+            <li>my photography website, with image pavement display : <a href="https://photo.corentinrobin.com" target="_blank">photo.corentinrobin.com</a></li>
+        </ul>
+
+        <p>To go further, let's not forget that new web frameworks are advertised mainly over Twitter, so let's not get hit by the hype.</p>
+
+        <p>In 2020, using a framework means the company is super modern, attracts more people through social medias, and don't forget that both Tailwind and Vue for example, make a lot of money through their differents lectures and packs... So one day framework will be more a marketing product than an actual technical tool.</p>
+
+        <p class="note">in the past 5 years, web UIs got simpler and simpler, doing less and less things, while the code base got more and more complicated...</p>
+
+        <p>Let's finish with a quick homemade citation: </p>
+        
+        <p class="citation">If I need to plant 10 carrots once, I use a shovel. If I need to dig 2 Olympic swimming pools per month, I use an excavator.</p>        
+    </body>
+</html>

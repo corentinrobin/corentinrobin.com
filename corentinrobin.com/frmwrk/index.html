@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta content="text/html" charset="utf-8">
+    <script src="frmwrk.js"></script>
+</head>
+
+<body>
+
+    <h1 _lexicon="title"></h1>
+
+    <div>
+        <label _lexicon="language_selection"></label>
+        <select onchange="_language = this.value" _variable="_language">
+            <option value="french">français</option>
+            <option value="spanish">español</option>
+            <option value="english">english</option>
+        </select>
+    </div>
+
+    <div>
+        <input type="checkbox" _variable="a">
+    </div>
+
+    <div>
+        <input type="text" _variable="b">
+    </div>
+
+    <div>
+        <textarea _variable="b"></textarea>
+    </div>
+
+    <div _object="list1"></div>
+
+    <script>
+        var _language = "english";
+
+        var _lexicon =
+        {
+            "english" :
+            {
+                "title" : "How to build quickly an application",
+                "language_selection" : "Select language:"
+            },
+
+            "french" :
+            {
+                "title" : "Comment faire rapidement une application",
+                "language_selection" : "Sélectionner la langue :"
+            },
+
+            "spanish" :
+            {
+                "title" : "Cómo hacer rápidamente una aplicación",
+                "language_selection" : "Seleccione el idioma :"
+            }
+        }
+
+        var a = true, b = "toto";
+
+        var list = function(items)
+        {
+            this.items = items;
+        }
+
+        list.prototype.render = function()
+        {
+            var output = `<ul>`;
+
+            this.items.forEach(function(item)
+            {
+                output += `<li>${ item }</li>`;
+            });
+
+            output += `</ul>`;
+
+            return output;
+        }
+
+        var list1 = new list(["apple", "banana", "pear"]);
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,124 @@
+/* Author: Corentin ROBIN */
+
+@font-face
+{
+	font-family : Merriweather-Light;
+	src : url(../fonts/Merriweather-Light.ttf);
+}
+
+@font-face
+{
+	font-family : UbuntuMono-Regular;
+	src : url(../fonts/UbuntuMono-Regular.ttf);
+}
+
+@media only screen and (max-width: 1199px)
+{
+    html,body
+    {
+        overflow-x: hidden;  /* si on ne fait pas ça, sur mobile il y a un espace ça droite du body... */
+    }
+
+    body
+    {
+        width : 100% !important;
+        margin : 15px !important;
+    }
+}
+
+html,body
+{
+    padding : 0;
+    margin : 0;
+}
+
+body
+{
+    width : 1200px;
+    margin : 40px auto;
+    font-family : Merriweather-Light;
+    background-color: #fffff8;
+    font-size : 14px;
+}
+
+tr:first-child
+{
+    font-weight: bold;
+    text-align: center;
+	background-color : #fff7cb;
+}
+
+tr:not(:first-child):nth-child(odd)
+{
+	background-color : #f3f3f3;
+}
+
+tr:not(:first-child):nth-child(even)
+{
+	background-color : #f9f9f9;
+}
+
+code,
+tr:not(:first-child) > td:not(:first-child):not(:last-child)
+{
+    font-family: UbuntuMono-Regular;
+    white-space: pre;
+}
+
+table,td
+{
+    border-collapse: collapse;
+}
+
+td
+{
+    padding : 5px;
+}
+
+p.note,p.important
+{
+    padding: 4px;
+    border-radius: 4px;
+}
+
+p.note:before
+{
+    content : 'Note: ';
+    font-weight : bold;
+}
+
+p.important:before
+{
+    content : 'Important: ';
+    font-weight : bold;
+}
+
+p.note
+{
+    color: #187d18;
+    background-color: #e5f7e9;
+}
+
+p.important
+{
+    background-color: #d4d4f7;
+    color: #280fb3;
+}
+
+p.citation
+{
+    font-style: italic;
+    padding-left : 20px;
+}
+
+a,a:visited
+{
+	color : #5555ff;
+	text-decoration: none;
+}
+
+div
+{
+    width : 100%;
+    overflow-x : auto;
+}

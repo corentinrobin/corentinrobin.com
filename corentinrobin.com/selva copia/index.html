@@ -1,0 +1,119 @@
+<!-- Auteur : Corentin Robin -->
+<!DOCTYPE html>
+
+<html>
+	<head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Selva</title>
+        <link rel="stylesheet" href="styles/selva.css">
+        <link rel="icon" href="images/logo.svg">
+	</head>
+
+<body>
+
+    <script src="scripts/selva.min.js"></script>
+
+    <h1><img src="images/logo.svg"> Selva</h1>
+
+    <script>
+        var text = "This is the application text.",
+            fontSize = 16,
+            letterSpacing = 0,
+            color = "#3483ff",
+            textDecoration = false,
+            character = "George",
+            band =
+            {
+                "John" : {"role" : "rythm guitarist", "image" : "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/John_Lennon_1969_%28cropped%29.jpg/166px-John_Lennon_1969_%28cropped%29.jpg"},
+                "Paul" : {"role" : "bassist", "image" : "https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Paul_McCartney_black_and_white_2010.jpg/171px-Paul_McCartney_black_and_white_2010.jpg"},
+                "George" : {"role" : "lead guitarist", "image" : "https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/George_Harrison_1974.jpg/184px-George_Harrison_1974.jpg"},
+                "Ringo" : {"role" : "drummer", "image" : "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Ringo_Starr_and_all_his_band_%288470866906%29.jpg/189px-Ringo_Starr_and_all_his_band_%288470866906%29.jpg"}
+            },
+            code = `character = 'Ringo';
+text = 'This is the brand new text.';
+fontSize = 20;`;
+    </script>
+
+    <h2>Introduction</h2>
+
+    <p>The purpose of Selva is to update the UI of a single-page application in real time with the JavaScript values.</p>
+
+    <p>How it works: all <code>selva-*</code> attributes will be evaluated and set to the target attribute.</p>
+
+    <p>What the selva attribute can contain: a string, and anything in side <code>{...}</code> will be evaluated and replaced in the string.</p>
+
+    <p>For example, <code>selva-style</code> will set the <code>style</code> attribute, <code>selva-src</code> will change <code>src</code>.</p>
+
+    <p>The only exception is <code>selva-value</code>, which handles the content of the tag, and binds it to the variable if it's an input.</p>
+
+    <p>For example, doing <code>selva-value="{firstName}"</code>, on an text input will bind the global variable <code>firstName</code> to this input.</p>
+
+    <p>If the variable is changed in JS, the input value will change, and if the user type a value through the UI, the variable will be updated.</p>
+
+    <p>Putting <code>selva-value="Hello world!"</code> to an h1, a p or any non-input tag will simply update the content.</p>
+
+    <p>The purpose of Selva is to keep things simple and keep a way of working as close as possible to HTML and JavaScript.</p>
+
+    <p>One consider that as it is an SPA, we don't use any namespace.</p>
+
+    <p>I think using multiple small and simple libraries is easier that using a big complicated one.</p>
+
+    <p>This is a small and simple library ;)</p>
+
+    <h2>Examples</h2>
+
+    <p>See below few examples, and check the source code to find out how it's done.</p>
+
+    <div class="examples">
+
+        <h3>Text UI</h3>
+
+        <div>
+            Text: <input type="text" selva-value="{text}"><textarea selva-value="{text}"></textarea>
+        </div>
+
+        <div>
+            Font-size: <input type="number" selva-value="{fontSize}"><input type="range" selva-value="{fontSize}">
+        </div>
+
+        <div>
+            Letter spacing: <input type="number" selva-value="{letterSpacing}"><input type="range" selva-value="{letterSpacing}">
+        </div>
+
+        <div>
+            Color: <input type="color" selva-value="{color}">
+        </div>
+
+        <div>
+            Text decoration: <input type="checkbox" selva-value="{textDecoration}">
+        </div>
+
+        <div selva-value="Font-size: {fontSize} pixels." selva-style="color : { fontSize > 40 ? 'red' : 'green' }"></div>
+
+        <p selva-style="color : {color} ; font-size : {fontSize}px ; letter-spacing : {letterSpacing}px ; text-decoration : { textDecoration ? 'underline' : 'none' }" selva-value="{text}"></p>
+
+        <h3>Informative UI</h3>
+
+        <div>
+            Select a character: <select selva-value="{character}"><option>John</option><option>Paul</option><option>George</option><option>Ringo</option></select>
+        </div>
+
+        <div selva-value="{character} is the { band[character].role } of the Beatles."></div>
+
+        <img selva-src="{band[character].image}">
+    </div>
+
+    <h2>Sandbox</h2>
+
+    <div>
+        <input type="button" value="Execute the code below" onclick="eval(code)">
+    </div>
+
+    <div>
+        <textarea selva-value="{code}" class="code"></textarea>
+    </div>
+
+    <p class="copyright">&copy; 2020 Corentin ROBIN</p>
+</body>
+</html>

@@ -1,0 +1,190 @@
+<!-- Auteur : Corentin Robin -->
+<!DOCTYPE html>
+
+<html>
+	<head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Selva</title>
+        
+        <link rel="stylesheet" href="styles/index.css">
+        <link rel="stylesheet" href="styles/selva.css">
+        <link rel="icon" href="images/logo.svg">
+	</head>
+
+<body>
+
+    <script src="scripts/selva.min.js"></script>
+
+    <script>
+        var a = 2, b = "Variables", c = false, d = "George",
+        e = "https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/DirkvdM_canopy_walk.jpg/320px-DirkvdM_canopy_walk.jpg",
+        f = "sea", g = "#cccccc", h = "";
+
+        var code = `a = Math.round(Math.random() * 100 + 1) ; b = "Bonjour" ; c = !c ; d = "Paul" ;
+e = "https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/GMAW.welding.af.ncs.jpg/425px-GMAW.welding.af.ncs.jpg" ;
+f = "mountain" ; g = "#a4bcda" ;`;
+
+        var city = function(options)
+        {
+            this.name = options.name;
+            this.population = options.population;
+            this.climate = options.climate;
+            this.image = options.image;
+
+            this.toDOM = function()
+            {
+                var output = `<div class="city" style="background-image : url(${ this.image })">
+                                <div>
+                                    <div><b>${ this.name }</b></div>
+                                    <div>Population : ${ this.population } million</div>
+                                    <div>Climate : ${ this.climate }</div>
+                                </div>
+                              </div>`;
+
+                return output;
+            }
+        }
+
+        var city1 = new city({name :  "Singapore", population : 5.7, climate : "tropical rainforest", image : "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Orchid_Garden_-_Botanical_Garden_-_Singapore_-_10_%2835650157436%29.jpg/320px-Orchid_Garden_-_Botanical_Garden_-_Singapore_-_10_%2835650157436%29.jpg"}),
+            city2 = new city({name :  "Rio de Janeiro", population : 6.7, climate : "tropical savanna", image : "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/00_1031_Brasilien%2C_Rio_de_Janeiro.jpg/320px-00_1031_Brasilien%2C_Rio_de_Janeiro.jpg"}),
+            city3 = new city({name :  "Tokyo", population : 13.9, climate : "humid subtropical", image : "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Colorful_neon_street_signs_in_Kabukich%C5%8D%2C_Shinjuku%2C_Tokyo.jpg/320px-Colorful_neon_street_signs_in_Kabukich%C5%8D%2C_Shinjuku%2C_Tokyo.jpg"}),
+            city4 = new city({name :  "Barcelona", population : 1.6, climate : "mediterranean", image : "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Barcelona_Arc_de_Triomf.jpg/320px-Barcelona_Arc_de_Triomf.jpg"});
+
+        var cities = [city1, city2, city3];
+
+        var blueButtons = true;
+
+        var customColor = "#000000", fontSize = 12;
+
+        var className ="small";
+    </script>
+
+    <h1><img src="images/logo.svg"> Selva</h1>
+
+    <h2>Introduction</h2>
+
+    <p>The purpose of Selva is to update in real-time the UI with the JavaScript values.</p>
+
+    <p>It is meant to be used for Single-Page Applications (SPA), by respecting the HTML and JavaScript syntax as much as possible.</p>
+
+    <p>To update the UI with your application value, first create a global variable.</p>
+
+    <p>Once done, target any element by using the <code>data-value</code> attribute, containing the global variable name.</p>
+
+    <p>That's it, Selva will update the element when needed.</p>
+
+    <p>Note that if your element is a field for example, Selva will update the JavaScript value instead.</p>
+
+    <h2 data-value="b"></h2>
+
+    <div class="variables">
+        <div>
+            Set the value for a: <input type="number" data-value="a"> <input type="range" data-value="a"> ; a = <b data-value="a"></b>
+        </div>
+
+        <div>
+            Set the value for b: <input type="text" data-value="b"> <textarea data-value="b"></textarea> ; b = <b data-value="b"></b>
+        </div>
+
+        <div>
+            Set the value for c: <input type="checkbox" data-value="c"> ; c = <b data-value="c"></b>
+        </div>
+
+        <div>
+            Set the value for d: <select data-value="d"><option>John</option><option>Paul</option><option>George</option><option>Ringo</option></select>
+            <input type="text" data-value="d">
+            ; d = <b data-value="d"></b>
+        </div>
+
+        <div>
+            Set the value for e: <input type="text" data-value="e"> <img data-value="e">; e = <b data-value="e"></b>
+        </div>
+
+        <div>
+            Set the value for f:
+            <input type="radio" name="f" id="sea" value="sea" data-value="f"> <label for="sea">sea</label>
+            <input type="radio" name="f" id="mountain" value="mountain" data-value="f"> <label for="mountain">mountain</label>
+            <input type="radio" name="f" id="forest" value="forest" data-value="f"> <label for="forest">forest</label>
+            ; f = <b data-value="f"></b>
+        </div>
+
+        <div>
+            Set the value for g:
+            <input type="color" data-value="g">
+            ; g = <b data-value="g"></b>
+        </div>
+
+        <div>
+            Get the value of h:
+            <input type="file" data-value="h">
+            ; h = <b data-value="h"></b>
+        </div>
+
+        <div>
+            <div><input type="button" value="Execute" onclick="eval(code)"> the code below:</div>
+            <textarea data-value="code" class="code"></textarea>
+        </div>
+    </div>
+
+    <h2>Object</h2>
+
+    <p>To render an object, it has to have a <code>toDOM()</code> method, returning a string containing HTML code.</p>
+
+    <p>Then just use the same <code>data-value</code> attribute to target your object.</p>
+
+    <p>Note that this is only for passive objects (this is not a component).</p>
+
+    <div data-value="city1"></div>
+
+    <p>To display 3 cities, you can put them in an array and target this array in your elements.</p>
+
+    <p>You can then easily interact with this array, like a list of results in a search engine, for example.</p>
+
+    <p><input type="button" value="Reverse items" onclick="cities.reverse()"><input type="button" value="Add item" onclick="cities.push(city4)"><input type="button" value="Remove item" onclick="cities.pop()"></p>
+    
+    <p>Note: you can also display JavaScript expressions, with <code>data-value</code> as usual.</p>
+
+    <p>In the list of cities, there are <b data-value="cities.length"></b> item<span data-value="cities.length > 1 ? 's' : ''"></span>.</p>
+    
+    <div data-value="cities"></div>
+
+    <h2>Style</h2>
+
+    <p>To change the inline class of an element, use the <ocde>data-style</ocde>.</p>
+
+    <p>You can put <code>${...}</code> to get a variable value in the style string.</p>
+
+    <p>Choose text color: <input type="color" data-value="customColor"></p>
+
+    <p>Choose font size: <input type="range" data-value="fontSize"><input type="number" data-value="fontSize"></p>
+
+    <p data-style="color : ${customColor} ; font-size : ${fontSize}px">This is a text.</p>
+
+    <h2>Class</h2>
+
+    <p>To change the class, simply use <code>data-class</code> and pass the variable which contains the class name.</p>
+
+    <p>Class: <select data-value="className"><option>big</option><option>small</option></select></p>
+
+    <p data-class="className">This is a text.</p>
+
+    <h2>Other</h2>
+
+    <p>With <code>data-value</code>, you can bind styles or scripts to a JS variable too.</p>
+
+    <link rel="stylesheet" data-value="blueButtons ? 'styles/blue_buttons.css' : 'styles/green_buttons.css'">
+
+    <p><input type="checkbox" id="blueButtons" data-value="blueButtons"> <label for="blueButtons">blue buttons</label></p>
+
+    <h2>Notes</h2>
+
+    <p>Important: designing the UI, the object rendering functions and handling server calls is your job. Selva is here only to update the UI, no more.</p>
+
+    <p>Let's use simple tools only for what they are designed to do.</p>
+
+    <p>Don't use an excavator to plant a carrot.</p>
+
+    <p class="copyright">&copy; 2020 Corentin ROBIN</p>
+</body>
+</html>

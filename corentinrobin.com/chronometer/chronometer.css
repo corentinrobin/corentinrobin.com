@@ -1,0 +1,49 @@
+@font-face
+{
+    font-family : GlassAntiqua-Regular;
+    src : url(GlassAntiqua-Regular.ttf);
+}
+
+html,body
+{
+    margin : 0;
+    width : 100%;
+    height : 100%;
+}
+
+body
+{
+    font-family : GlassAntiqua-Regular;
+    display : flex;
+    flex-direction : column;
+}
+
+header
+{
+    display : flex;
+    align-items : center;
+    justify-content: center;
+    background-color : #10377c;
+    color : white;
+    font-size : 40px;
+    height : 60px;
+}
+
+main
+{
+    flex : 1;
+    display : flex;
+}
+
+main > div:first-child
+{
+    flex : 3;
+    display : flex;
+    align-items : center;
+    justify-content: center;
+}
+
+main > div:last-child
+{
+    flex : 1;
+}

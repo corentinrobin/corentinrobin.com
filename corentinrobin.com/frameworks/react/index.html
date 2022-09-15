@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Essai React - Corentin ROBIN</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    
+    <!-- Don't use this in production: -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <link rel="stylesheet" href="../common/common.css">
+  </head>
+  <body>
+      <style>
+          div.note
+          {
+              padding : 10px;
+              margin : 10px;
+          }
+
+      </style>
+
+    <div id="root"></div>
+    <script type="text/babel">
+
+        class Note extends React.Component
+        {
+            constructor(props)
+            {
+                super(props);
+
+                // valeurs initiales du composant
+                this.state = { text : "This is the default text."};
+
+                // semble obligatoire pour les évènement du DOM
+                this.handleChange = this.handleChange.bind(this);
+                this.clearText = this.clearText.bind(this);
+                this.randomNumber = this.randomNumber.bind(this);
+            }
+
+            handleChange(event)
+            {
+                this.setState({ text : event.target.value });
+            }
+
+            clearText()
+            {
+                this.setState({ text :  "" });
+            }
+
+            randomNumber()
+            {
+                this.setState({ text :  Math.random() });
+            }
+
+            render()
+            {
+                return (
+                    <div className="note" style={{backgroundColor : this.props.backgroundColor }}>
+                        <h1>{ this.props.title }</h1>
+                        <textarea value={ this.state.text } onChange={ this.handleChange }></textarea>
+    
+                        <div>
+                            <input type="button" value="Clear" onClick={ this.clearText } />
+                            <input type="button" value="Random number" onClick={ this.randomNumber } />
+                        </div>
+                    </div>
+                );
+            }
+        }
+
+        Note.defaultProps =
+        {
+            title : "Default title",
+            backgroundColor : "white"
+        };
+
+        class List extends React.Component
+        {
+            constructor(props)
+            {
+                super(props);
+
+                // valeurs initiales du composant
+                this.state = { item : "pineapple", items : ["apple", "pear", "banana"]};
+
+                this.addItem = this.addItem.bind(this);
+                this.reverseItems = this.reverseItems.bind(this);
+                this.popItem = this.popItem.bind(this);
+                this.handleChange = this.handleChange.bind(this);
+            }
+
+            addItem()
+            {
+                this.state.items.push(this.state.item);
+                this.setState({ items : this.state.items });
+            }
+
+            reverseItems()
+            {
+                this.setState({ items : this.state.items.reverse() });
+            }
+
+            popItem()
+            {
+                this.state.items.pop();
+                this.setState({ items : this.state.items });
+            }
+
+            handleChange(event)
+            {
+                this.setState({ item : event.target.value });
+            }
+
+            render()
+            {
+                const listItems = this.state.items.map((item, i) => <li key={ i }>{ item }</li>);
+
+                return (
+                    <div>
+                        <b>{ this.props.title }</b>
+
+                        <div>
+                            <input type="button" onClick={ this.reverseItems } value="Reverse list"/>
+                            <input type="button" onClick={ this.popItem } value="Pop item"/>
+                            <input type="button" onClick={ this.addItem } value="Add item:"/><input type="text" value={ this.state.item } onChange={ this.handleChange }/>
+                        </div>
+                        <ul>
+                            { listItems }
+                        </ul>
+                    </div>
+                );
+            }
+        }
+
+        List.defaultProps =
+        {
+            title : "Default list title"
+        };
+
+        class App extends React.Component
+        {
+            render()
+            {
+                const title = <h1>React test</h1>;
+
+                return (
+                    <div>
+                        { title }
+                        <Note title="My note 1" backgroundColor="#d7d7ec"/>
+                        <Note title="My note 2" backgroundColor="#ffc8c8"/>
+                        <Note/>
+                        <List title="Custom list title"/>
+                        <List/>
+                    </div>
+                )
+            }
+        }
+
+        ReactDOM.render(
+            <App/>,
+            document.getElementById('root')
+        );
+    </script>
+  </body>
+</html>

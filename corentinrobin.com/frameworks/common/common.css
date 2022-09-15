@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap');
+
+body
+{
+    color : #718096;
+    background-color : #f7fafc;
+    width : 1100px;
+    margin : auto;
+}
+
+body,input,textarea
+{
+    font-size : 1em;
+    font-family: 'Nunito', sans-serif;
+}
+
+input[type="button"]
+{
+    background-color : #389bb2;
+    border-radius : 4px;
+    border : none;
+    color : white;
+    padding : 4px 8px;
+    margin : 3px;
+    cursor : pointer;
+}
+
+code
+{
+    vertical-align: 1px;
+    padding : 4px;
+    background-color : #cdecc6;
+    color : black;
+    border-radius : 4px;
+}
+
+textarea.code
+{
+    width : 400px;
+    height : 200px;
+}
